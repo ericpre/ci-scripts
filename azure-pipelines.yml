@@ -49,6 +49,12 @@ pool:
   vmImage: '$(vmImage)'
 
 steps:
+- task: CondaEnvironment@1
+  displayName: Install mamba
+  inputs:
+    updateConda: false
+    packageSpecs: 'mamba'
+    installOptions: '--channel conda-forge'
 - template: azure_pipelines/clone_ci-scripts_repo.yml@templates
 - template: azure_pipelines/activate_conda.yml@templates
 - template: azure_pipelines/setup_anaconda_packages.yml@templates
